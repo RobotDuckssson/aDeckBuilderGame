@@ -1,7 +1,7 @@
 
 class Card:
     
-    def __init__(self, card_faction, card_name = None, card_type = None, card_abillity = None, card_pimary_abillity_value = None, card_cost = None):
+    def __init__(self, card_faction = None, card_name = None, card_type = None, card_abillity = None, card_pimary_abillity_value = None, card_cost = None):
         self.card_faction = "free"
         self.card_name = "name"
         self.card_type = "type"
