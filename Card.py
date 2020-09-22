@@ -7,3 +7,6 @@ class Card(object):
         self.card_abillity = card_abillity
         self.card_pimary_abillity_value = card_pimary_abillity_value
         self.card_cost = card_cost
+
+    def get_card_info(self):
+        return f"{self.card_faction} - {self.card_type} - {self.card_name} - cost: {self.card_cost} - Ability: {self.card_abillity} [{self.card_pimary_abillity_value}]"

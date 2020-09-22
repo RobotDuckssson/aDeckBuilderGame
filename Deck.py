@@ -20,17 +20,15 @@ class ExplorerDeck(Deck):
     def __init__(self):
         deck = []
         for i in range(10):
-            deck.append(Card("Unaligned", "Explorer", "Ship", "Money", "2", "2"))
+            deck.append(Card("Unaligned", "Explorer", "Ship", "Attack", "2", "2"))
         self.deck = deck
-        self.shuffle()
-
 
 class PlayerDeck(Deck):
     def __init__(self):
         deck = []
     
-        deck.append(Card("Free", "Viper", "Ship", "Attack", "1" "0"))
-        deck.append(Card("Free", "Viper", "Ship", "Attack", "1" "0"))
+        deck.append(Card("Free", "Viper", "Ship", "Attack", "1", "0"))
+        deck.append(Card("Free", "Viper", "Ship", "Attack", "1", "0"))
             
         for i in range(8):
             deck.append(Card("Free", "Scout", "Ship", "Money", "1", "0"))
