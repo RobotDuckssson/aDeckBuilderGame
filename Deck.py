@@ -36,6 +36,16 @@ class PlayerDeck(Deck):
         self.deck = deck
         self.shuffle()
 
+class DiscardPile(Deck):
+    def __init__(self):
+        deck = []
+        self.deck = deck
+        self.shuffle()
+
+    def add_to_discard(self, card_to_add):
+        self.deck.append(card_to_add)
+
+
 class GameDeck(Deck):
     def __init__(self):
         deck = []
