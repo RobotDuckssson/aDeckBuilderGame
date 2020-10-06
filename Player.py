@@ -8,8 +8,10 @@ class Player(object):
         self.player_name = player_name
         self.player_card_hand = []
         self.discard_deck = Deck.DiscardPile()
+        self.player_current_money = 0
 
     def get_hand(self):
+        self.player_current_money = 0
         for i in range(5):
             card = self.player_deck.draw()
             # If empty handed in draw pile.
