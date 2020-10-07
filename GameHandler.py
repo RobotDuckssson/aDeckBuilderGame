@@ -8,11 +8,16 @@ class GameHandler(object):
         self.game_on = True
 
         while self.game_on:
+            # Attack and check if someone won
             self.player_attack()
-            self.show_trade_deck()
-            self.buy_card()
-            self.discard_cards()
-            self.get_new_hand()
+            
+            # If both players are still in play, continue
+            if self.game_on:
+                self.show_trade_deck()
+                self.buy_card()
+                self.discard_cards()
+                self.get_new_hand()
+
 
     # Game setup
     def setup_game(self):
@@ -25,6 +30,7 @@ class GameHandler(object):
         self.cards_on_the_table = []
         for i in range(5):
             self.cards_on_the_table.append(self.card_deck.draw())
+
 
     #Player attack
     def player_attack(self):
@@ -42,9 +48,7 @@ class GameHandler(object):
         print(f"Attacked with {player_attack}")
         self.player_one.print_points()
         self.player_two.print_points()
-
-    # Shows the trade deck
-    def show_trade_deck(self):
+        
         if self.player_one.player_points <= 0 or self.player_two.player_points <= 0:
             if self.player_one.player_points > 0:
                 print("Player one is the winner")
@@ -52,10 +56,10 @@ class GameHandler(object):
                 print("Player two is the winner")
             
             self.game_on = False
+        
 
-        #--------------------------------------
-        # Buy
-        #--------------------------------------
+    # Shows the trade deck
+    def show_trade_deck(self):
         print("------------------------------")
 
         placement = 1
@@ -78,9 +82,15 @@ class GameHandler(object):
         for possible in cards_possible_to_buy:
             print(possible, end=", ")
 
+
     # Handles the purchase, discards and gets new hand
     def buy_card(self):
-        card_to_buy = int(input())
+        try:
+            card_to_buy = int(input())
+        except ValueError:
+            print("Please enter a number: ")
+            card_to_buy = int(input())
+
         if card_to_buy == 6:
             self.player_one.add_card_to_discard(self.explorer_deck.deck.pop())
         
@@ -88,9 +98,11 @@ class GameHandler(object):
             self.player_one.add_card_to_discard(self.cards_on_the_table[card_to_buy-1])
             self.cards_on_the_table[card_to_buy-1] = self.card_deck.draw()
 
-        if card_to_buy == 7:
+        # Fail safe during testing
+        if card_to_buy == 9:
             self.game_on = False
 
+    # Discards cards
     def discard_cards(self):
                 # add to discard pile and 
         # draw new card
@@ -98,5 +110,6 @@ class GameHandler(object):
             self.player_one.add_card_to_discard(self.player_one.player_card_hand.pop())
         #for cards in player_one.player_card_hand:
 
+    # Gets you a new hand
     def get_new_hand(self):
         self.player_one.get_hand()
